@@ -1,0 +1,125 @@
+// Variáveis no SASS são como "caixinhas" onde guardamos valores que usamos várias vezes.
+// Aqui, criamos variáveis para guardar as cores e a fonte que usamos no nosso site.
+$font-family: Roboto, sans-serif;
+$background-color-body: #f5f6fa;
+$background-color-header: #182C61;
+$background-color-product-button: #fc9904;
+$background-color-product-button-hover: #4cd137;
+$text-color-white: #fff;
+
+// Este é um reset padrão. Ele zera as margens e paddings de todos os elementos,
+// garantindo que o site pareça igual em diferentes navegadores.
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: $font-family; // Aqui usamos a variável de fonte que definimos antes.
+}
+
+body {
+    background-color: $background-color-body; // Usando a variável da cor de fundo.
+}
+
+li {
+    list-style: none;
+}
+
+// O container é como uma caixa que ajuda a centralizar e alinhar o conteúdo no meio da página.
+.container {
+    max-width: 1024px;
+    width: 100%;
+    margin: 0 auto;
+
+    // Aqui usamos uma mídia query para mudar o estilo em telas menores.
+    // Se a tela tem largura máxima de 1023px, o container ocupa 80% da tela.
+    @media screen and (max-width: 1023px) {
+        max-width: 80%;
+    }
+}
+
+// O header é a parte superior da página, onde geralmente fica o menu.
+header {
+    background-color: $background-color-header; // Cor de fundo do header.
+    position: sticky;
+    top: 0;
+    left: 0;
+
+    // Dentro do header, temos um container para alinhar os itens.
+    .container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 16px 0;
+    }
+}
+
+// O menu é uma lista de links de navegação.
+.menu {
+    display: flex;
+
+    // Aqui usamos aninhamento para estilizar os itens (li) e os links (a) dentro do menu.
+    li {
+        font-weight: bold;
+        margin-left: 24px;
+
+        a {
+            color: $text-color-white; // Cor do texto dos links.
+            text-decoration: none;
+        }
+    }
+}
+
+// Seção é uma divisão genérica para agrupar conteúdo.
+section {
+    padding: 56px 0;
+}
+
+// A seção de produtos mostra os itens à venda.
+.products {
+    margin-top: 40px;
+    display: grid;
+    grid-template-columns: repeat(3, 32.66%);
+    column-gap: 1%;
+    row-gap: 4%;
+    width: 100%;
+
+    // Muda o layout dos produtos para 2 colunas em telas menores.
+    @media screen and (max-width: 1023px) {
+        grid-template-columns: repeat(2, 48.5%);
+        column-gap: 3%;
+    }
+
+    // Em telas ainda menores, os produtos são mostrados em uma única coluna.
+    @media screen and (max-width: 767px) {
+        display: block;
+
+        .product-item {
+            margin-bottom: 32px;
+        }
+    }
+}
+
+// Cada produto tem uma imagem e um botão.
+.product-item {
+    img {
+        width: 100%; // A imagem ocupa toda a largura disponível.
+        border-radius: 16px; // Bordas arredondadas.
+    }
+}
+
+// O botão de cada produto.
+.product-button {
+    display: block;
+    background-color: $background-color-product-button; // Cor de fundo.
+    color: $text-color-white; // Cor do texto.
+    text-align: center;
+    padding: 8px 0;
+    border-radius: 8px;
+    margin-top: 8px;
+    text-decoration: none;
+
+    // Muda a cor de fundo do botão quando passa o mouse por cima.
+    &:hover {
+        background-color: $background-color-product-button-hover;
+    }
+}
